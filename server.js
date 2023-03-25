@@ -1,6 +1,9 @@
-const express = require('express');
+const express = require("express");
+const db = require("./config/connection");
 const app = express();
 
-app.listen(3001,() => {
-    console.log('listening on port 3001');
+db.once("open", () => {
+  app.listen(3001, () => {
+    console.log("listening on port 3001");
+  });
 });
