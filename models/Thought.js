@@ -3,8 +3,8 @@ const mongoose = require("mongoose");
 const reactionSchema = mongoose.Schema(
   {
     reactionId: {
-      type: mongoose.Schema.Types.ObjectId,
-      default: new mongoose.Schema.Types.ObjectId(),
+      type: mongoose.Types.ObjectId,
+      default: new mongoose.Types.ObjectId(),
     },
     reactionBody: {
       type: String,
@@ -17,7 +17,7 @@ const reactionSchema = mongoose.Schema(
     },
     createdAt: {
       type: Date,
-      get: (date) => date,
+      get: (date) => date.toDateString(),
     },
   },
   { timestamps: true, toJSON: { getters: true } }
@@ -32,9 +32,13 @@ const thoughtSchema = mongoose.Schema(
     },
     createdAt: {
       type: Date,
-      get: (date) => date,
+      get: (date) => date.toDateString(),
     },
     thoughtName: {
+      type: String,
+      required: true,
+    },
+    username: {
       type: String,
       required: true,
     },
